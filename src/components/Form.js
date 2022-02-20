@@ -3,9 +3,16 @@ import { useState } from "react";
 export default function Form() {
   const [username, setUsername] = useState('');
 
-  const submitForm = e => { 
+  const submitForm = async e => { 
     e.preventDefault();
     console.log('Form submitted', username);
+    try {
+      const response = 
+        await fetch(`/api/analytics-twitter?username=${username}`);
+      console.log(await response.json());
+    } catch (error) {
+      alert('Something went wrong'); 
+    }
   };
 
   return (
