@@ -18,6 +18,18 @@ export default function Form() {
     }
   };
 
+  const saveReportData = async () => { 
+    try {
+      const response = await fetch(`/api/save-report`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      })
+      console.log(response);
+    } catch (error) {
+      alert('Something went wrong'); 
+    }
+  }
+
   return (
     <>
     <form onSubmit={submitForm} className="flex max-w-xs">
@@ -30,6 +42,13 @@ export default function Form() {
       />
       <button className={ButtonStyle('primary')}>Submit</button>
     </form>
+    <button 
+      className={ButtonStyle('primary')}
+      disabled={!data}
+      onClick={saveReportData}
+    >
+      Save Report
+    </button>
     <Report data={data}/>
     </>
   );
