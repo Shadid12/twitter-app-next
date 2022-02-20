@@ -1,4 +1,5 @@
-import { profileCard, reportContainer } from "../styles/Report.styles";
+import ReactJson from "react-json-view";
+import { profileCard, rawDataContainer, reportContainer } from "../styles/Report.styles";
 import { DetailsCard } from "./DetailsCard";
 
 export function Report({ data }) {
@@ -11,7 +12,7 @@ export function Report({ data }) {
   return (
     <>
       <h3 className="mt-4">Viewing Report</h3>
-      <div className={reportContainer}>
+      <div className={reportContainer}> 
         <div className={profileCard}>
           <div className="flex mb-2">
             <img src={data.userData?.profile_image_url} className="rounded-xl" />
@@ -21,6 +22,10 @@ export function Report({ data }) {
           <div>{data.userData.location}</div>
         </div>
         <DetailsCard data={data}/>
+      </div>
+      <h3 className="mt-4">Raw data</h3>
+      <div className={rawDataContainer}>
+        <ReactJson src={data ? data : {}} collapsed={true}/>
       </div>
     </>
   )
