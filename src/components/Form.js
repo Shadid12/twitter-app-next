@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ButtonStyle } from "../styles/Buttons.styles";
 
 export default function Form() {
   const [username, setUsername] = useState('');
@@ -16,14 +17,15 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={submitForm} className="flex flex-col max-w-xs">
       <input 
-        placeholder="Twitter Username" 
+        placeholder="Twitter Username (without @)" 
         onChange={
           event => setUsername(event.target.value)
         }
+        className="mt-3 rounded-md shadow-md px-4 py-3"
       />
-      <button>Submit</button>
+      <button className={ButtonStyle('primary')}>Submit</button>
     </form>
   );
 }
