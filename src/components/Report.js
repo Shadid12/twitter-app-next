@@ -1,6 +1,9 @@
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
+import dynamic from "next/dynamic";
 import { profileCard, rawDataContainer, reportContainer } from "../styles/Report.styles";
 import { DetailsCard } from "./DetailsCard";
+const DynamicReactJson = dynamic(import('react-json-view'), { ssr: false });
+
 
 export function Report({ data }) {
   
@@ -11,7 +14,11 @@ export function Report({ data }) {
   }
   return (
     <>
-      <h3 className="mt-4">Viewing Report</h3>
+      <h3 className="mt-4 text-lg">Raw data</h3>
+      <div className={rawDataContainer}>
+        <DynamicReactJson src={data ? data : {}} collapsed={true}/>
+      </div>
+      <h3 className="mt-4 text-lg">Viewing Report</h3>
       <div className={reportContainer}> 
         <div className={profileCard}>
           <div className="flex mb-2">
@@ -22,10 +29,6 @@ export function Report({ data }) {
           <div>{data.userData.location}</div>
         </div>
         <DetailsCard data={data}/>
-      </div>
-      <h3 className="mt-4">Raw data</h3>
-      <div className={rawDataContainer}>
-        <ReactJson src={data ? data : {}} collapsed={true}/>
       </div>
     </>
   )
