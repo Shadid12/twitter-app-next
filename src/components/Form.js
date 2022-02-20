@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ButtonStyle } from "../styles/Buttons.styles";
+import { Report } from "./Report";
 
 export default function Form() {
   const [username, setUsername] = useState('');
+  const [data, setData] = useState(null);
 
   const submitForm = async e => { 
     e.preventDefault();
@@ -10,14 +12,15 @@ export default function Form() {
     try {
       const response = 
         await fetch(`/api/analytics-twitter?username=${username}`);
-      console.log(await response.json());
+      setData(await response.json());
     } catch (error) {
       alert('Something went wrong'); 
     }
   };
 
   return (
-    <form onSubmit={submitForm} className="flex flex-col max-w-xs">
+    <>
+    <form onSubmit={submitForm} className="flex max-w-xs">
       <input 
         placeholder="Twitter Username (without @)" 
         onChange={
@@ -27,5 +30,7 @@ export default function Form() {
       />
       <button className={ButtonStyle('primary')}>Submit</button>
     </form>
+    <Report data={data}/>
+    </>
   );
 }

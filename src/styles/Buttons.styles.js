@@ -2,6 +2,7 @@ export const ButtonStyle = type => {
   switch(type) {
     case 'primary':
       return `px-4 
+      ml-3
       py-3 
       mt-4 
       border 
