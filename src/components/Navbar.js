@@ -9,9 +9,9 @@ export function Navbar() {
             Home
           </a>
         </Link>
-        <Link href="/view-report">
+        <Link href="/reports">
           <a className={ButtonStyle('nav')}>
-            View Saved Report
+            Reports
           </a>
         </Link>
     </nav>
