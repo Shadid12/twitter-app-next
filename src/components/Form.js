@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ButtonStyle } from "../styles/Buttons.styles";
+import { saveReportData } from "../utils/db";
 import { Report } from "./Report";
 
 export default function Form() {
@@ -18,16 +19,8 @@ export default function Form() {
     }
   };
 
-  const saveReportData = async () => { 
-    try {
-      const response = await fetch(`/api/save-report`, {
-        method: 'POST',
-        body: JSON.stringify(data),
-      })
-      console.log(response);
-    } catch (error) {
-      alert('Something went wrong'); 
-    }
+  const saveReport = async () => { 
+    await saveReportData(data);
   }
 
   return (
@@ -45,7 +38,7 @@ export default function Form() {
     <button 
       className={ButtonStyle('primary')}
       disabled={!data}
-      onClick={saveReportData}
+      onClick={saveReport}
     >
       Save Report
     </button>
