@@ -10,13 +10,6 @@ export default function Form() {
   const submitForm = async e => { 
     e.preventDefault();
     console.log('Form submitted', username);
-    try {
-      const response = 
-        await fetch(`/api/analytics-twitter?username=${username}`);
-      setData(await response.json());
-    } catch (error) {
-      alert('Something went wrong'); 
-    }
   };
 
   const saveReport = async () => { 
@@ -27,10 +20,10 @@ export default function Form() {
     <>
     <form onSubmit={submitForm} className="flex max-w-xs">
       <input 
-        placeholder="Twitter Username (without @)" 
+        placeholder="Twitter Username" 
         onChange={
           event => setUsername(event.target.value)
-        }
+        } 
         className="mt-3 rounded-md shadow-md px-4 py-3"
       />
       <button className={ButtonStyle('primary')}>Submit</button>
